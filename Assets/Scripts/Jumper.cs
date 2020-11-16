@@ -6,12 +6,28 @@ using UnityEngine;
 
 public class Jumper : Agent
 {
-   /* public override void Initialize()
+
+    private Rigidbody body;
+    private Environment environment;
+
+    public override void Initialize()
     {
         base.Initialize();
         body = GetComponent<Rigidbody>();
         environment = GetComponentInParent<Environment>();
-        matMenhirInPlace = environment.matMenhirInPlace;
-    }*/
+    }
+
+    private void FixedUpdate()
+    {
+        AddReward(0.001f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("Obstakel"))
+        {
+            AddReward(-1f);
+        }
+    }
 
 }
