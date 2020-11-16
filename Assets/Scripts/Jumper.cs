@@ -23,9 +23,10 @@ public class Jumper : Agent
         AddReward(0.001f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.transform.CompareTag("Obstakel"))
+        Debug.Log(collision);
+        if (collision.transform.CompareTag("Obstakel"))
         {
             AddReward(-1f);
         }
