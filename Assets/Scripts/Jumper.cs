@@ -1,18 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.MLAgents;
 using UnityEngine;
 
-public class Jumper : MonoBehaviour
+public class Jumper : Agent
 {
-    // Start is called before the first frame update
-    void Start()
+   /* public override void Initialize()
     {
-        
-    }
+        base.Initialize();
+        body = GetComponent<Rigidbody>();
+        environment = GetComponentInParent<Environment>();
+        matMenhirInPlace = environment.matMenhirInPlace;
+    }*/
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
