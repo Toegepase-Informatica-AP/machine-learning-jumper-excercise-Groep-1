@@ -51,17 +51,18 @@ public class Jumper : Agent
 
         if (Input.GetKey(KeyCode.Space)) // Jump
         {
-            actionsOut[0] = 1;
+            actionsOut[0] = 1f;
         }
     }
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        if(vectorAction[0] == 1 && transform.position.y <= 0.5)
+        Debug.Log("Springen aangeroepen!");
+        if(vectorAction[0] != 0 && transform.position.y <= 1)
         {
-            AddReward(0.001f);
+            AddReward(0.2f);
             Debug.Log("springen!");
-            Vector3 jumpVelocity = new Vector3(0f, jumpSpeed, 0f);
+            Vector3 jumpVelocity = new Vector3(0f, jumpSpeed * vectorAction[0], 0f);
             body.velocity = body.velocity + jumpVelocity;
         }
     }
