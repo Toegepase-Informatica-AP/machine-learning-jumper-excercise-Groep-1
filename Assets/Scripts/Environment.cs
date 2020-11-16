@@ -17,7 +17,6 @@ public class Environment : MonoBehaviour
 
     private void FixedUpdate()
     {
-        System.Console.WriteLine("test");
         score.text = jumper.GetCumulativeReward().ToString("f2");
     }
 }
