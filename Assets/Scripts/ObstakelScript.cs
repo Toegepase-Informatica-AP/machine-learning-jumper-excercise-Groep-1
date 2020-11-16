@@ -32,6 +32,9 @@ public class ObstakelScript : MonoBehaviour
             {
                 zSpeed = Random.Range(0.5f, 2.0f) * initialZSpeed;
             }
+            Rigidbody body = GetComponent<Rigidbody>();
+            body.angularVelocity = Vector3.zero;
+            body.velocity = Vector3.zero;
         }
     }
 }

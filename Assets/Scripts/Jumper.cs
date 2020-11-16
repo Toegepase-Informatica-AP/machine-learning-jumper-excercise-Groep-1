@@ -9,7 +9,7 @@ public class Jumper : Agent
 
     private Rigidbody body;
     private Environment environment;
-    public float jumpSpeed = 100;
+    public float jumpSpeed = 20;
 
     public override void Initialize()
     {
@@ -18,9 +18,21 @@ public class Jumper : Agent
         environment = GetComponentInParent<Environment>();
     }
 
-    private void FixedUpdate()
+    public override void OnEpisodeBegin()
     {
-        AddReward(0.001f);
+        transform.localPosition = new Vector3(0f, 0.5f, -16f);
+        body.angularVelocity = Vector3.zero;
+        body.velocity = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+
+    public void FixedUpdate()
+    {
+        if (transform.localPosition.y < 0 || transform.localPosition.z < -19)
+        {
+            AddReward(-1f);
+            EndEpisode();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,6 +41,7 @@ public class Jumper : Agent
         if (collision.transform.CompareTag("Obstakel"))
         {
             AddReward(-1f);
+            EndEpisode();
         }
     }
 
@@ -44,11 +57,12 @@ public class Jumper : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        if(vectorAction[0] == 1)
+        if(vectorAction[0] == 1 && transform.position.y <= 0.5)
         {
+            AddReward(0.001f);
             Debug.Log("springen!");
-            Vector3 translation = transform.up * jumpSpeed * Time.deltaTime;
-            transform.Translate(translation, Space.World);
+            Vector3 jumpVelocity = new Vector3(0f, jumpSpeed, 0f);
+            body.velocity = body.velocity + jumpVelocity;
         }
     }
 

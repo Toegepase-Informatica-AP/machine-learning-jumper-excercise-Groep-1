@@ -19,4 +19,9 @@ public class Environment : MonoBehaviour
     {
         score.text = jumper.GetCumulativeReward().ToString("f2");
     }
+
+    public void ResetJumper()
+    {
+        Instantiate(jumper.gameObject);
+    }
 }
