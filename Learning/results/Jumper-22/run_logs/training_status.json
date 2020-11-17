@@ -12,13 +12,19 @@
                 "file_path": "results\\Jumper-22\\Jumper\\Jumper-51020.nn",
                 "reward": 0.039024394459840725,
                 "creation_time": 1605598450.9974902
+            },
+            {
+                "steps": 51020,
+                "file_path": "results\\Jumper-22\\Jumper\\Jumper-51020.nn",
+                "reward": null,
+                "creation_time": 1605598561.968184
             }
         ],
         "final_checkpoint": {
             "steps": 51020,
             "file_path": "results\\Jumper-22\\Jumper.nn",
-            "reward": 0.039024394459840725,
-            "creation_time": 1605598450.9974902
+            "reward": null,
+            "creation_time": 1605598561.968184
         }
     },
     "metadata": {
