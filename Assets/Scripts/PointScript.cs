@@ -10,7 +10,7 @@ public class PointScript : MonoBehaviour
     void Start()
     {
         transform.localPosition = new Vector3(0, 2.0f, 4);
-        transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-2.6f, 2.6f), transform.localPosition.y, transform.localPosition.z);
+        // transform.localPosition = new Vector3(transform.localPosition.x + Random.Range(-2.6f, 2.6f), transform.localPosition.y, transform.localPosition.z);
     }
 
     // Update is called once per frame
