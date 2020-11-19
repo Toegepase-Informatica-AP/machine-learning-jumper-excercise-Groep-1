@@ -25,16 +25,20 @@ public class ObstakelScript : MonoBehaviour
 
         if(transform.localPosition.y < 0 || transform.localPosition.z < -19)
         {
-            //respawn
-            transform.localPosition = initialPosition;
-            transform.rotation = initialRotation;
-            if (randomSpeed)
-            {
-                zSpeed = Random.Range(0.5f, 2.0f) * initialZSpeed;
-            }
-            Rigidbody body = GetComponent<Rigidbody>();
-            body.angularVelocity = Vector3.zero;
-            body.velocity = Vector3.zero;
+            this.Respawn();
         }
+    }
+
+    public void Respawn()
+    {
+        transform.localPosition = initialPosition;
+        transform.rotation = initialRotation;
+        if (randomSpeed)
+        {
+            zSpeed = Random.Range(0.75f, 1.5f) * initialZSpeed;
+        }
+        Rigidbody body = GetComponent<Rigidbody>();
+        body.angularVelocity = Vector3.zero;
+        body.velocity = Vector3.zero;
     }
 }

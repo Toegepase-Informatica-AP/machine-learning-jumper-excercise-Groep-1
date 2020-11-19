@@ -8,11 +8,21 @@ public class Environment : MonoBehaviour
 
     private Jumper jumper;
     private TextMeshPro score;
+    private ObstakelScript obstakel;
+    public float averageRespawnTime = 1;
+    private float respawnTime;
+    public GameObject pointPrefab;
+    public bool points = true;
+    private List<GameObject> pointsList;
 
     public void OnEnable()
     {
         jumper = transform.GetComponentInChildren<Jumper>();
         score = transform.GetComponentInChildren<TextMeshPro>();
+        obstakel = transform.GetComponentInChildren<ObstakelScript>();
+        respawnTime = averageRespawnTime;
+        StartCoroutine(PointSpawning());
+        pointsList = new List<GameObject>();
     }
 
     private void FixedUpdate()
@@ -20,8 +30,25 @@ public class Environment : MonoBehaviour
         score.text = jumper.GetCumulativeReward().ToString("f2");
     }
 
-    public void ResetJumper()
+    public void ResetEnvironment()
     {
-        Instantiate(jumper.gameObject);
+        foreach (GameObject point in pointsList)
+        {
+            Destroy(point);
+        }
+
+        obstakel.Respawn();
+    }
+
+    IEnumerator PointSpawning()
+    {
+        while (points)
+        {
+            yield return new WaitForSeconds(respawnTime);
+            respawnTime = Random.Range(averageRespawnTime * 0.5f, averageRespawnTime * 1.5f);
+            GameObject point = Instantiate(pointPrefab, transform.position, Quaternion.identity, transform) as GameObject;
+            pointsList.Add(point);
+            point.transform.position = transform.position;
+        }
     }
 }
