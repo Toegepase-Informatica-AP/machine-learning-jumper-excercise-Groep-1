@@ -1,0 +1,29 @@
+{
+    "Jumper": {
+        "checkpoints": [
+            {
+                "steps": 49981,
+                "file_path": "results\\Jumper-33\\Jumper\\Jumper-49981.nn",
+                "reward": -0.9463541674582908,
+                "creation_time": 1605610519.248509
+            },
+            {
+                "steps": 82595,
+                "file_path": "results\\Jumper-33\\Jumper\\Jumper-82595.nn",
+                "reward": -0.9396106849872429,
+                "creation_time": 1605610626.4242373
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 82595,
+            "file_path": "results\\Jumper-33\\Jumper.nn",
+            "reward": -0.9396106849872429,
+            "creation_time": 1605610626.4242373
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
