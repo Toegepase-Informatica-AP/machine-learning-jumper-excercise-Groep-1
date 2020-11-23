@@ -38,14 +38,10 @@ public class Jumper : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision);
+        //Debug.Log(collision);
         if (collision.transform.CompareTag("Obstakel"))
         {
             Die();
-        }
-        else if (collision.transform.CompareTag("Point"))
-        {
-            AddReward(1f);
         }
     }
 
@@ -64,7 +60,7 @@ public class Jumper : Agent
 
         if (Input.GetKey(KeyCode.Space)) // Jump
         {
-            Debug.Log("Spatiebalk ingedrukt");
+            //Debug.Log("Spatiebalk ingedrukt");
             actionsOut[0] = 1f;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -83,12 +79,21 @@ public class Jumper : Agent
         isGrounded = true;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Point")
+        {
+            Destroy(other.gameObject);
+            AddReward(0.25f);
+        }
+    }
+
     public override void OnActionReceived(float[] vectorAction)
     {
-        Debug.Log("Springen aangeroepen!");
+        //Debug.Log("Springen aangeroepen!");
         if (vectorAction[0] != 0 && isGrounded)
         {
-            Debug.Log("springen!");
+            //Debug.Log("springen!");
             Vector3 jumpVelocity = new Vector3(0f, jumpSpeed * 1, 0f);
             body.velocity = body.velocity + jumpVelocity;
             isGrounded = false;
