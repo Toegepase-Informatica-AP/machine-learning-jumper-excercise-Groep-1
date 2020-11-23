@@ -7,6 +7,7 @@ public class Jumper : Agent
     private Rigidbody body;
     private Environment environment;
     public float jumpSpeed = 20;
+    public float movementSpeed = 1;
     public bool isGrounded;
 
     public override void Initialize()
@@ -55,7 +56,8 @@ public class Jumper : Agent
     public override void Heuristic(float[] actionsOut)
     {
         actionsOut[0] = 0f;
-        /*actionsOut[1] = 0f;*/
+        actionsOut[1] = 0f;
+        actionsOut[2] = 0f;
 
 
         if (Input.GetKey(KeyCode.Space)) // Jump
@@ -69,7 +71,7 @@ public class Jumper : Agent
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            actionsOut[1] = -1f;
+            actionsOut[2] = 1f;
 
         }
     }
@@ -97,6 +99,20 @@ public class Jumper : Agent
             Vector3 jumpVelocity = new Vector3(0f, jumpSpeed * 1, 0f);
             body.velocity = body.velocity + jumpVelocity;
             isGrounded = false;
+        }
+
+        if(vectorAction[1] > 0.5f) 
+        {
+            Vector3 rightVelocity = new Vector3(movementSpeed * vectorAction[1], 0f, 0f);
+            body.velocity = body.velocity + rightVelocity;
+
+        }
+
+        if (vectorAction[2] > 0.5f) 
+        {
+
+            Vector3 leftVelocity = new Vector3(-movementSpeed * vectorAction[2], 0f, 0f);
+            body.velocity = body.velocity + leftVelocity;
         }
 
     }
