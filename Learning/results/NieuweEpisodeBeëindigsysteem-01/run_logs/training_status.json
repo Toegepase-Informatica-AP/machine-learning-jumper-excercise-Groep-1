@@ -1,0 +1,23 @@
+{
+    "Jumper": {
+        "checkpoints": [
+            {
+                "steps": 19440,
+                "file_path": "results\\NieuweEpisodeBe\u00ebindigsysteem-01\\Jumper\\Jumper-19440.nn",
+                "reward": -0.22145898331383498,
+                "creation_time": 1606146188.3536851
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 19440,
+            "file_path": "results\\NieuweEpisodeBe\u00ebindigsysteem-01\\Jumper.nn",
+            "reward": -0.22145898331383498,
+            "creation_time": 1606146188.3536851
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
