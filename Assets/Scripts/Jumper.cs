@@ -1,4 +1,5 @@
-﻿using Unity.MLAgents;
+﻿using System.Timers;
+using Unity.MLAgents;
 using UnityEngine;
 
 public class Jumper : Agent
@@ -18,6 +19,11 @@ public class Jumper : Agent
     }
 
     public override void OnEpisodeBegin()
+    {
+        Respawn();
+    }
+
+    public void Respawn()
     {
         transform.localPosition = new Vector3(0f, 0.5f, -16f);
         body.angularVelocity = Vector3.zero;
@@ -49,8 +55,7 @@ public class Jumper : Agent
     private void Die()
     {
         AddReward(-1f);
-        environment.ResetEnvironment();
-        EndEpisode();
+        Respawn();
     }
 
     public override void Heuristic(float[] actionsOut)
@@ -86,7 +91,7 @@ public class Jumper : Agent
         if (other.gameObject.tag == "Point")
         {
             Destroy(other.gameObject);
-            AddReward(0.25f);
+            AddReward(0.10f);
         }
     }
 
@@ -96,19 +101,18 @@ public class Jumper : Agent
         if (vectorAction[0] != 0 && isGrounded)
         {
             //Debug.Log("springen!");
-            Vector3 jumpVelocity = new Vector3(0f, jumpSpeed * 1, 0f);
-            body.velocity = body.velocity + jumpVelocity;
+            body.AddForce(Vector3.up * jumpSpeed * 300);
             isGrounded = false;
         }
 
-        if(vectorAction[1] > 0.5f) 
+        if (vectorAction[1] > 0.5f)
         {
             Vector3 rightVelocity = new Vector3(movementSpeed * vectorAction[1], 0f, 0f);
             body.velocity = body.velocity + rightVelocity;
 
         }
 
-        if (vectorAction[2] > 0.5f) 
+        if (vectorAction[2] > 0.5f)
         {
 
             Vector3 leftVelocity = new Vector3(-movementSpeed * vectorAction[2], 0f, 0f);

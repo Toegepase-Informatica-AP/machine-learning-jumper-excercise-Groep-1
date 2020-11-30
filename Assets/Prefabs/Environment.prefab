@@ -387,6 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zSpeed: 10
   randomSpeed: 1
+  count: 0
 --- !u!54 &604299720320628394
 Rigidbody:
   m_ObjectHideFlags: 0

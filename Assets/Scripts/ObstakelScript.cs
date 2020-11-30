@@ -9,6 +9,7 @@ public class ObstakelScript : MonoBehaviour
     private static Vector3 initialPosition;
     private static Quaternion initialRotation;
     private float initialZSpeed;
+    public int count = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,5 +41,6 @@ public class ObstakelScript : MonoBehaviour
         Rigidbody body = GetComponent<Rigidbody>();
         body.angularVelocity = Vector3.zero;
         body.velocity = Vector3.zero;
+        count++;
     }
 }

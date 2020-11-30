@@ -27,7 +27,12 @@ public class Environment : MonoBehaviour
 
     private void FixedUpdate()
     {
-        score.text = jumper.GetCumulativeReward().ToString("f2");
+        score.text = $"{jumper.GetCumulativeReward().ToString("f2")} - {obstakel.count}";
+        if(obstakel.count > 10)
+        {
+            obstakel.count = 0;
+            jumper.EndEpisode();
+        }
     }
 
     public void ResetEnvironment()
@@ -38,6 +43,7 @@ public class Environment : MonoBehaviour
         }
 
         obstakel.Respawn();
+        
     }
 
     IEnumerator PointSpawning()
